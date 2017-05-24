@@ -1,0 +1,10 @@
+<div class="quote">
+    <form method="post" action="{% url 'qdb_vote' quote.id %}">
+        {% csrf_token %}
+<h2><a href="{% url 'qdb_single' quote.id %}">#{{ quote.id }}</a>&nbsp;&nbsp;
+	<button name="up" value="True" type="submit" class="btn btn-primary mod-up" title="Labais!"></button> 
+	({{ quote.punkti }}) <button name="down" value="True" type="submit" class="btn btn-primary mod-down" title="Galīgi garām!"></button> &nbsp; <a href="{% url 'qdb_single' quote.id %}#comment" class="comment-icon"><img src="{{ STATIC_URL }}comment.png" alt="add comment"></a></h2>
+<p class="citats">{{ quote.teksts }}</p>
+<p class="info">Pērle pievienota {{ quote.pievienots }} un {{ quote.balsis }} cilvēki ir balsojuši par to.</p>
+    </form>
+</div>

@@ -1,0 +1,12 @@
+{% extends "qdb/base.html" %}
+
+{% block title %}
+Balsojums par pērli #{{ quote.id }} pieņemts
+{% endblock %}
+
+{% block saturs %}
+<h2>Balsojums pieņemts</h2>
+<p>Balsojums par pērli #{{ quote.id }} ir pieņemts.</p>
+<p>Par pērli #{{ quote.id }} ir saņemtas {{ quote.balsis }} balsis, kas dod {{ quote.punkti }} punktus.</p>
+<p><a href="{% url 'qdb_random' %}">Spied te, lai saņemtu jaunu pērļu devu</a></p>
+{% endblock %}

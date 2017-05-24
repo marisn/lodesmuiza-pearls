@@ -1,0 +1,14 @@
+{% extends "qdb/base.html" %}
+
+{% block title %}
+Pērļu zvejnieka krātuve
+{% endblock %}
+
+{% block saturs %}
+<h2>Laipni lūdzam pērļu krātuvē</h2>
+<p>Šajā datu bāzē ir apkopotas atsevišķas sazvejotās pērles, kuru iešana zudībā laupītu nozīmīgu informāciju
+par Lodesmuižas sūro vēsturi.</p>
+<p>Palūdz, lai <a href="{% url 'qdb_random' %}">ieber sauju pērļu</a>, lai saņemtu divdesmit pērles. Var arī aplūkot
+<a href="{% url 'qdb_top10' %}">desmit pērļu pērles</a>. Neaizmirsti izteikt atzinību <img src="{{ STATIC_URL }}up.png" alt="Patīk!"> labākajām pērlēm.</p>
+<p>Ir pieejama jaunāko pērļu  <a href="{% url 'qdb_latest_feed' %}"><img src="{{ STATIC_URL }}rss.png" alt="RSS"> RSS barotne</a>. Pērļu komentēšanu nodrošina Disqus. Atsauksmes var sūtīt uz marisn @ lodesmuiza.lv.</p>
+{% endblock %}

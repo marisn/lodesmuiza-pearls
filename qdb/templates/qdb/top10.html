@@ -1,0 +1,13 @@
+{% extends "qdb/base.html" %}
+
+{% block title %}
+Pērļu pērles
+{% endblock %}
+
+{% block saturs %}
+<h2>Pērļu pērles</h2>
+{% for quote in quotes %}
+	{% include "qdb/quote.html" %}
+{% endfor %}
+{% endblock %}
+

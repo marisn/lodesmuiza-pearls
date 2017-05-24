@@ -1,0 +1,96 @@
+{% load disqus_tags %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+ <head>
+  <title>{% block title %}Citātu datu bāze{% endblock %}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="http://www.lodesmuiza.lv/quote/latest/feed/" rel="alternate" type="application/rss+xml" title="Lodesmuiza.lv pērļu krātuves jaunākās pērles">
+  <style type="text/css">
+  	body {  font-size: 12pt;
+		background: url("{{ STATIC_URL }}concho-pearl-shell.png") #E6FCFF left top no-repeat;
+		margin: 0.5em auto 1em; padding-left: 2em; padding-right: 2em; 
+		min-width: 45em; max-width: 55em; }
+	#content { background-color: rgba(230, 253, 255, 0.5); border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+		padding: 0.5em; }
+	h1 { font-size: 2em; 
+		color: #00688B;
+		font-weight: bold;
+		font-family: fantasy;
+		text-align: center; }
+	h2 { color: #00688B; font-size: 1.2em; padding: 0.2em; margin: 0.2em; }
+	p { font-size: 1em; padding: 0.2em; margin: 0.2em; }
+	.info { font-size: 0.8em; font-style: italic; }
+	a:hover { font-weight: bold; border: 1px solid; color: #473C8B;
+		text-decoration: none; }
+	a { font-weight: bold; border: 1px solid transparent;
+		 color: #00688B; text-decoration: none;}
+	img { border: none; }
+	div.navi { text-align: right; color: #00688B; }
+	div.navi a { padding: 0.3em; background-color: rgba(230, 253, 255, 0.5); border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px; }
+	div.quote { margin: 0.3em; padding: 0.5em; border: 1px solid transparent; width: 42.5em; }
+	div.quote:hover { background: #E2F8FA; border-top: 1px solid #BED0D2; border-bottom: 1px solid #BED0D2; }
+	#bottom { font-size: 0.7em; text-align: center; margin-top: 2em; clear: both; }
+	.smalltext { font-size: small; }
+	#comments { width: 40em; padding-top: 0.5em; }
+	#comments input, textarea { width: 72%; float: right; }
+	#comments label { width: 27%; float: left; text-align: right; }
+	#comments form p { clear: both; padding: 0.5em; min-height: 1em; }
+	#comments form { clear: both; min-height: 370px; margin-top: 2em; }
+	#comments form p.submit { margin-left: 29.5%; clear: both; float: none; }
+	#comments form p.submit input { float: none; width: 5em; }
+	#comments form .error { float: left; color: red; clear: left; }
+	div.comment { margin: 0.8em 0.3em 0.3em 0.3em; padding: 0.2em 0.2em 0 0.2em; }
+	div.comment.dark { background: #E2F8FA; border-top: 1px solid #BED0D2; border-bottom: 1px solid #BED0D2; }
+	#id_honeypot { display: none; }
+	#latest_comments { width: 10em; float: right; padding: 0.2em; background: #E2F8FA; border: 1px solid #BED0D2; border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px;}
+	#latest_comments p { font-size: 0.8em; }
+	#latest_comments .info { font-size: 0.8em; }
+	#latest_comments>div { border: 1px solid transparent; }
+	#latest_comments>div:hover { border-top: 1px solid #BED0D2; border-bottom: 1px solid #BED0D2; background: #E6FCFF;}
+    button.mod-up { 
+        background: url("{{ STATIC_URL }}up.png") #E6FCFF left top no-repeat;
+        width: 19px; height: 19px;
+        position: relative; top: -6px; }
+    button.mod-down { 
+        background: url("{{ STATIC_URL }}down.png") #E6FCFF left top no-repeat;
+        width: 19px; height: 19px;
+        position: relative; top: -6px; }
+    button.mod-up:hover   { box-shadow: 0 0 8px 5px #473C8B; }
+    button.mod-down:hover { box-shadow: 0 0 8px 5px #473C8B; }
+    a.comment-icon img { position: relative; top: 4px; }
+  </style>
+  <!-- Nu ko interesantu te gaidīji? Neesi nekad redzējis ar roku rakstītu kodu? Lodesmuiža un Džanga FTW!-->
+ </head>
+ <body>
+ <h1>Pērļu zvejnieka kolekcija</h1>
+ <div class="navi">
+	 <form action="{% url 'qdb_no' %}" method="get">
+	 <a href="{% url 'qdb_no' %}">Sākums</a> <a href="{% url 'qdb_random' %}">Ieber man sauju pērļu...</a> <a href="{% url 'qdb_top10' %}">Pērļu pērles</a> <a href="{% url 'qdb_latest' %}">Jaunākās</a>
+	 #<input type="text" name="quote_id" class="smalltext" size=4></form>
+ </div> 
+ <div id="latest_comments">
+{% disqus_recent_comments shortname 10 50 1 %}
+ </div>
+ <div id="content">
+ {% block saturs %} 
+ {% endblock %}
+ </div>
+
+ <div id="bottom">
+	<p><a href="{% url 'qdb_about' %}">Par pērlēm</a> 
+	<a href="http://www.gisnet.lv/">Mūs atbalsta GISnet.lv</a></p>
+ {% block bottom %}
+	<a href="http://www.lodesmuiza.lv/">Lodesmuiža</a>, 2017. <a href="{% url 'qdb_latest_feed' %}"><img src="{{ STATIC_URL }}rss.png" alt="RSS"> RSS</a>
+ {% endblock %}
+ </div>
+ <script type="text/javascript">
+ var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+ </script>
+ <script type="text/javascript">
+ try {
+ var pageTracker = _gat._getTracker("UA-9261226-1");
+ pageTracker._trackPageview();
+ } catch(err) {}</script>
+ </body>
+</html>

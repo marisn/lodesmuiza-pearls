@@ -1,0 +1,14 @@
+{% extends "qdb/base.html" %}
+{% load disqus_tags %}
+{% set_disqus_identifier "quote_" object.id %}
+
+{% block title %}
+Pērle #{{ quote.id }}
+{% endblock %}
+
+{% block saturs %}
+{% include "qdb/quote.html" %}
+<div id="comments">
+    {% disqus_show_comments %}
+</div>
+{% endblock %}
