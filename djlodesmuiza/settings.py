@@ -87,6 +87,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticroot')
+MEDIA_ROOT = os.path.join(GEOGRAPHIC_ADMIN_DIR, 'media')
+MEDIA_URL = '/quote/base/media/'
 
 # Disqus
 DISQUS_WEBSITE_SHORTNAME = 'lodesmuiza'
